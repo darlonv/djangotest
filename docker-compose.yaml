@@ -1,34 +1,25 @@
 version: '3'
-volumes:
-  django:
   
 services:
   build:
     profiles: ['build']
     build: .
     image: darlon/django:0.1
-    
-  clone:
-    image: darlon/django:0.1
-    volumes:
-      - django:/data
-    working_dir: /data
-    command: git clone https://github.com/darlonv/djangotest.git /data/
-    
+   
   init:
     profiles: ['init']
     image: darlon/django:0.1
     volumes:
-      - django:/data
+      - ./data:/data
     working_dir: /data
-    command: django-admin startproject app
+    command: django-admin startproject app /data/
     
   run:
-    profiles: ['run', 'server', 'all']
     image: darlon/django:0.1
     ports:
       - "8000:8000"
     volumes:
-      - django:/data
+      - ./data:/data
     working_dir: /data
-    command: python /data/app/manage.py runserver 0.0.0.0:8000
+    command: python3 /data/manage.py runserver 0.0.0.0:8000
+    
