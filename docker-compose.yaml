@@ -1,27 +1,27 @@
 version: '3'
-  
+
 services:
   build:
-    profiles: ['build']
+    profiles: [ 'build' ]
     build: .
     image: ${IMAGE}
-   
+
   startproject:
-    profiles: ['init']
+    profiles: [ 'init' ]
     image: ${IMAGE}
     volumes:
       - ${BASEDIR_HOST}:${BASEDIR}
     working_dir: ${BASEDIR}
     command: django-admin startproject ${PROJECT}
-    
+
   startapp:
-    profiles: ['init']
+    profiles: [ 'init' ]
     image: ${IMAGE}
     volumes:
       - ${BASEDIR_HOST}:${BASEDIR}
     working_dir: ${BASEDIR}
     command: django-admin startapp ${APP}
-    
+
   run:
     image: ${IMAGE}
     ports:
@@ -30,10 +30,11 @@ services:
       - ${BASEDIR_HOST}:/${BASEDIR}
     working_dir: ${BASEDIR}
     command: python3 ${BASEDIR}/manage.py runserver 0.0.0.0:8000
-    
+
   migrate:
+    profiles: [ 'migrate' ]
     image: ${IMAGE}
     volumes:
       - ${BASEDIR_HOST}:/${BASEDIR}
     working_dir: ${BASEDIR}
-    command: python3 ${BASEDIR}/manage.py migrate
+    command: bash migrations.sh
