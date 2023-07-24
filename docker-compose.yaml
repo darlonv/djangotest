@@ -6,6 +6,22 @@ services:
     build: .
     image: ${IMAGE}
 
+  #docker run -it --rm -p 2015:2015 -v $(pwd)/data:/db --name websql acttaiwan/phpliteadmin
+  #https://hub.docker.com/r/vtacquet/phpliteadmin
+  websqlite:
+    profiles: [ 'websqlite' ]
+    container_name: websqlite
+    image: vtacquet/phpliteadmin
+    restart: unless-stopped
+    volumes:
+      - ${BASEDIR_HOST}:/db/
+    ports:
+      - "2015:80"
+    environment:
+      - TZ=America/Sao_Paulo
+      - PASSWORD=admin
+      - LOCATION=/db
+
   startproject:
     profiles: [ 'init' ]
     image: ${IMAGE}
