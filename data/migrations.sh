@@ -1,5 +1,5 @@
-echo "==== MIGRATIONS ===="
-python manage.py migrate
+echo "==== MAKE MIGRATIONS ===="
+python manage.py makemigrations
 
-echo "==== MIGRATIONS POLLS ===="
-python manage.py makemigrations polls
+echo "==== MIGRATE ===="
+python manage.py migrate
