@@ -1,3 +1,4 @@
+cd ${PROJECT}
 echo "==== MAKE MIGRATIONS ===="
 python manage.py makemigrations
 

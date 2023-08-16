@@ -45,6 +45,9 @@ services:
   migrate:
     profiles: [ 'migrate' ]
     image: ${IMAGE}
+    environment:
+      - PROJECT=${PROJECT}
+      - APP=${APP}
     volumes:
       - ${BASEDIR_HOST}:/${BASEDIR}
     working_dir: ${BASEDIR}
