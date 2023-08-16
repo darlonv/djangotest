@@ -23,7 +23,7 @@ services:
       - LOCATION=/db
 
   new:
-    profiles: [ 'init' ]
+    profiles: [ 'new' ]
     image: ${IMAGE}
     environment:
       - PROJECT=${PROJECT}
@@ -33,14 +33,6 @@ services:
     working_dir: ${BASEDIR}
     command: bash new.sh
 
-  startapp:
-    profiles: [ 'init' ]
-    image: ${IMAGE}
-    volumes:
-      - ${BASEDIR_HOST}:${BASEDIR}
-    working_dir: ${BASEDIR}
-    command: django-admin startapp ${APP}
-
   run:
     image: ${IMAGE}
     ports:
@@ -48,7 +40,7 @@ services:
     volumes:
       - ${BASEDIR_HOST}:/${BASEDIR}
     working_dir: ${BASEDIR}
-    command: python3 ${BASEDIR}/manage.py runserver 0.0.0.0:8000
+    command: python3 ${BASEDIR}/${PROJECT}/manage.py runserver 0.0.0.0:8000
 
   migrate:
     profiles: [ 'migrate' ]
