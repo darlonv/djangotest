@@ -49,3 +49,11 @@ services:
       - ${BASEDIR_HOST}:/${BASEDIR}
     working_dir: ${BASEDIR}
     command: bash migrations.sh
+
+  deleteproject:
+    profiles: [ 'delete' ]
+    image: ${IMAGE}
+    volumes:
+      - ${BASEDIR_HOST}:/${BASEDIR}
+    working_dir: ${BASEDIR}
+    command: rm -rf ${PROJECT}
