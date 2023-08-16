@@ -27,7 +27,7 @@ services:
     image: ${IMAGE}
     environment:
       - PROJECT=${PROJECT}
-      - APP=${}
+      - APP=${APP}
     volumes:
       - ${BASEDIR_HOST}:${BASEDIR}
     working_dir: ${BASEDIR}
