@@ -22,7 +22,7 @@ services:
       - PASSWORD=admin
       - LOCATION=/db
 
-  startproject:
+  new:
     profiles: [ 'init' ]
     image: ${IMAGE}
     volumes:
