@@ -25,10 +25,13 @@ services:
   new:
     profiles: [ 'init' ]
     image: ${IMAGE}
+    environment:
+      - PROJECT=${PROJECT}
+      - APP=${}
     volumes:
       - ${BASEDIR_HOST}:${BASEDIR}
     working_dir: ${BASEDIR}
-    command: django-admin startproject ${PROJECT}
+    command: bash new.sh
 
   startapp:
     profiles: [ 'init' ]
