@@ -1,7 +1,11 @@
 {
+	"name": "Django dev container",
 	"image": "darlon/django:0.1",
 	"customizations": {
 		"vscode": {
+			"settings": {
+				"python.pythonPath": "/usr/local/bin/python3"
+			},
 			"extensions": [
 				"ms-python.python",
 				"ms-python.vscode-pylance",
